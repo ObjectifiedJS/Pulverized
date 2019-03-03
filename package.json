@@ -1,0 +1,31 @@
+{
+  "name": "Pulverized",
+  "version": "1.0.0",
+  "description": "Utilize any compression algorithm with just a single module...",
+  "main": "index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/github.com/ObjectifiedJS/Pulverized.git"
+  },
+  "keywords": [
+    "brotli",
+    "compress",
+    "compression",
+    "decompress",
+    "decompression",
+    "deflate",
+    "gzip",
+    "gunzip",
+    "inflate",
+    "unzip",
+    "zlib"
+  ],
+  "author": "Delmarc Eric Rosario <delmarc@uneek1.com> (http://www.uneek1.com/)",
+  "bugs": {
+    "url": "https://github.com/ObjectifiedJS/Pulverized/issues"
+  },
+  "dependencies": {
+    "iltorb": "^2.4.1"
+  }
+}
