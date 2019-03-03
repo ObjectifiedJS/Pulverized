@@ -1,5 +1,5 @@
 {
-  "name": "Pulverized",
+  "name": "pulverized",
   "version": "1.0.0",
   "description": "Utilize any compression algorithm with just a single module...",
   "main": "index.js",
@@ -21,6 +21,7 @@
     "unzip",
     "zlib"
   ],
+  "license": "MIT",
   "author": "Delmarc Eric Rosario <delmarc@uneek1.com> (http://www.uneek1.com/)",
   "bugs": {
     "url": "https://github.com/ObjectifiedJS/Pulverized/issues"
