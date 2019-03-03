@@ -22,6 +22,7 @@
     "zlib"
   ],
   "license": "MIT",
+  "homepage": "https://github.com/ObjectifiedJS/Pulverized#readme",
   "author": "Delmarc Eric Rosario <delmarc@uneek1.com> (http://www.uneek1.com/)",
   "bugs": {
     "url": "https://github.com/ObjectifiedJS/Pulverized/issues"
