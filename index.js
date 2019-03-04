@@ -8,35 +8,35 @@ var compressionExports = {
 		"compress":{
 			"async":{
 				"br":["iltorb","compress"],
-				"gz":["zlib","gzip"],
-				"df":["zlib","deflate"]
+				"df":["zlib","deflate"],
+				"gz":["zlib","gzip"]
 			},
 			"stream":{
 				"br":["iltorb","compressStream"],
-				"gz":["zlib","createGzip"],
-				"df":["zlib","createDeflate"]
+				"df":["zlib","createDeflate"],
+				"gz":["zlib","createGzip"]
 			},
 			"sync":{
 				"br":["iltorb","compressSync"],
-				"gz":["zlib","gzipSync"],
-				"df":["zlib","deflateSync"]
+				"df":["zlib","deflateSync"],
+				"gz":["zlib","gzipSync"]
 			}
 		},
 		"decompress":{
 			"async":{
 				"br":["iltorb","decompress"],
-				"gz":["zlib","unzip"],
-				"df":["zlib","inflate"]
+				"df":["zlib","inflate"],
+				"gz":["zlib","unzip"]
 			},
 			"stream":{
 				"br":["iltorb","decompressStream"],
-				"gz":["zlib","createUnzip"],
-				"df":["zlib","createInflate"]
+				"df":["zlib","createInflate"],
+				"gz":["zlib","createUnzip"]
 			},
 			"sync":{
 				"br":["iltorb","decompressSync"],
-				"gz":["zlib","unzipSync"],
-				"df":["zlib","inflateSync"]
+				"df":["zlib","inflateSync"],
+				"gz":["zlib","unzipSync"]
 			}
 		}
 	};
@@ -58,6 +58,7 @@ function getMethod(
 	return retrivedCompressionMethod;
 }
 
+// stream line this... no real need for separatation... 
 function commonCompress( 
 	compressionAlgorithmString, 
 	methodString, 
