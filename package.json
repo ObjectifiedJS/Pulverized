@@ -1,6 +1,6 @@
 {
   "name": "pulverized",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Utilize any compression algorithm with just a single module...",
   "main": "index.js",
   "scripts": {},
