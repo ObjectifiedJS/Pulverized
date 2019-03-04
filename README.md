@@ -1,3 +1,7 @@
+[![License](https://img.shields.io/npm/l/pulverized.svg?style=flat-square)](https://www.npmjs.com/package/pulverized)
+[![Version](https://img.shields.io/npm/v/pulverized.svg?style=flat-square)](https://www.npmjs.com/package/pulverized)
+[![Weekly Downloads](https://img.shields.io/npm/dw/pulverized.svg?style=flat-square)](https://www.npmjs.com/package/pulverized)
+
 # Pulverized
 Utilize any compression algorithm with just a single module... The compression methods that are taken care of as of now are gzip, deflate and brotli.. if any new cool methods become mainstream, we will do our best to include them...
 
@@ -21,58 +25,35 @@ This is the Pulverized singleton 'illustrated' as a tree...
 
 ```
 Pulverized
-|
 |-- compress
-|   |
 |   |-- async
-|   |   |
 |   |   |-- br
-|   |   |
 |   |   |-- df
-|   |   |
 |   |   \-- gz
 |   |
 |   |-- stream
-|   |   |
 |   |   |-- br
-|   |   |
 |   |   |-- df
-|   |   |
 |   |   \-- gz
 |   |
 |   \-- sync
-|       |
 |       |-- br
-|       |
 |       |-- df
-|       |
 |       \-- gz
-|
-|
 \-- decompress
-    |
     |-- async
-    |   |
     |   |-- br
-    |   |
     |   |-- df
-    |   |
     |   \-- gz
     |
     |-- stream
-    |   |
     |   |-- br
-    |   |
     |   |-- df
-    |   |
     |   \-- gz
     |
     \-- sync
-        |
         |-- br
-        |
         |-- df
-        |
         \-- gz
 ```
 ## Examples
