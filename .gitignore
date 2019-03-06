@@ -1,2 +1,5 @@
 
 node_modules/
+examples/lorem-async-*
+examples/lorem-sync-*
+examples/lorem-stream-*

@@ -1,5 +1,7 @@
 'use strict';
 
+
+// next will be using node 11's native br compression IF it exists...
 var compressionExports = {
 		"zlib" : require('zlib'),
 		"iltorb" : require('iltorb')
@@ -43,11 +45,11 @@ var compressionExports = {
 
 
 function getMethod(
-	actionString, 
+	processingActionString, 
 	compressionAlgorithmString, 
 	methodString 
 ){ 
-	var compressionObject = methodsMapping[actionString][methodString][compressionAlgorithmString],
+	var compressionObject = methodsMapping[processingActionString][methodString][compressionAlgorithmString],
 		compressionIndex = 0,
 		retrivedCompressionMethod = compressionExports[compressionObject[compressionIndex]];
 
@@ -58,46 +60,15 @@ function getMethod(
 	return retrivedCompressionMethod;
 }
 
-// stream line this... no real need for separatation... 
-function commonCompress( 
+function commonDataProcessing( 
+	processingActionString, 
 	compressionAlgorithmString, 
 	methodString, 
-	inputToCompress, 
+	inputToActionOn, 
 	PulverizedObject 
-){ 
+){
 	var methodToUtilize = getMethod( 
-		"compress", 
-		compressionAlgorithmString, 
-		methodString 
-	);
-
-	switch(methodString){
-		case "async":
-			return methodToUtilize(
-				Buffer.from(inputToCompress), 
-				!!PulverizedObject.asyncCallback ? PulverizedObject.asyncCallback : PulverizedObject, 
-				PulverizedObject 
-			);
-		case "stream":
-			return methodToUtilize(
-				PulverizedObject 
-			);
-		case "sync":
-			return methodToUtilize(
-				Buffer.from(inputToCompress),
-				PulverizedObject
-			);
-	}
-}
-
-function commonDecompress( 
-	compressionAlgorithmString, 
-	methodString, 
-	inputToDecompress, 
-	PulverizedObject 
-){ 
-	var methodToUtilize = getMethod( 
-		"decompress", 
+		processingActionString, 
 		compressionAlgorithmString, 
 		methodString 
 	);
@@ -105,7 +76,7 @@ function commonDecompress(
 	switch(methodString){
 		case "async":
 			return methodToUtilize(
-				Buffer.from(inputToDecompress), 
+				Buffer.from(inputToActionOn), 
 				!!PulverizedObject.asyncCallback ? PulverizedObject.asyncCallback : PulverizedObject, 
 				PulverizedObject 
 			);
@@ -115,7 +86,7 @@ function commonDecompress(
 			);
 		case "sync":
 			return methodToUtilize(
-				Buffer.from(inputToDecompress),
+				Buffer.from(inputToActionOn),
 				PulverizedObject
 			);
 	}
@@ -130,7 +101,8 @@ module.exports = {
 				callback
 			) {
 				callback && (PulverizedObject.asyncCallback = callback);
-				return commonCompress( 
+				return commonDataProcessing( 
+					"compress", 
 					"br", 
 					"async", 
 					inputToCompress, 
@@ -138,7 +110,8 @@ module.exports = {
 				);
 			},
 			stream : function(PulverizedObject) {
-				return commonCompress( 
+				return commonDataProcessing( 
+					"compress", 
 					"br", 
 					"stream", 
 					null, 
@@ -149,7 +122,8 @@ module.exports = {
 				inputToCompress, 
 				PulverizedObject
 			) {
-				return commonCompress( 
+				return commonDataProcessing( 
+					"compress", 
 					"br", 
 					"sync", 
 					inputToCompress, 
@@ -164,7 +138,8 @@ module.exports = {
 				callback
 			) {
 				callback && (PulverizedObject.asyncCallback = callback);
-				return commonCompress( 
+				return commonDataProcessing( 
+					"compress", 
 					"gz", 
 					"async", 
 					inputToCompress, 
@@ -172,7 +147,8 @@ module.exports = {
 				);
 			},
 			stream : function(PulverizedObject) {
-				return commonCompress( 
+				return commonDataProcessing( 
+					"compress", 
 					"gz", 
 					"stream", 
 					null, 
@@ -183,7 +159,8 @@ module.exports = {
 				inputToCompress, 
 				PulverizedObject
 			) {
-				return commonCompress(
+				return commonDataProcessing(
+					"compress", 
 					"gz", 
 					"sync", 
 					inputToCompress, 
@@ -198,7 +175,8 @@ module.exports = {
 				callback
 			) {
 				callback && (PulverizedObject.asyncCallback = callback);
-				return commonCompress( 
+				return commonDataProcessing( 
+					"compress", 
 					"df", 
 					"async", 
 					inputToCompress, 
@@ -206,7 +184,8 @@ module.exports = {
 				);
 			},
 			stream : function(PulverizedObject) {
-				return commonCompress( 
+				return commonDataProcessing( 
+					"compress", 
 					"df", 
 					"stream", 
 					null, 
@@ -217,7 +196,8 @@ module.exports = {
 				inputToCompress, 
 				PulverizedObject
 			) {
-				return commonCompress(
+				return commonDataProcessing(
+					"compress", 
 					"df", 
 					"sync", 
 					inputToCompress, 
@@ -234,7 +214,8 @@ module.exports = {
 				callback
 			) {
 				callback && (PulverizedObject.asyncCallback = callback);
-				return commonDecompress( 
+				return commonDataProcessing( 
+					"decompress", 
 					"br", 
 					"async", 
 					inputToDecompress, 
@@ -242,7 +223,8 @@ module.exports = {
 				);
 			},
 			stream : function(PulverizedObject) {
-				return commonDecompress( 
+				return commonDataProcessing( 
+					"decompress", 
 					"br", 
 					"stream", 
 					null,
@@ -253,7 +235,8 @@ module.exports = {
 				inputToDecompress, 
 				PulverizedObject
 			) {
-				return commonDecompress( 
+				return commonDataProcessing( 
+					"decompress", 
 					"br", 
 					"sync", 
 					inputToDecompress, 
@@ -268,7 +251,8 @@ module.exports = {
 				callback
 			) {
 				callback && (PulverizedObject.asyncCallback = callback);
-				return commonDecompress( 
+				return commonDataProcessing( 
+					"decompress", 
 					"gz", 
 					"async", 
 					inputToDecompress, 
@@ -276,7 +260,8 @@ module.exports = {
 				);
 			},
 			stream : function(PulverizedObject) {
-				return commonDecompress( 
+				return commonDataProcessing( 
+					"decompress", 
 					"gz", 
 					"stream", 
 					null, 
@@ -287,7 +272,8 @@ module.exports = {
 				inputToDecompress, 
 				PulverizedObject
 			) {
-				return commonDecompress( 
+				return commonDataProcessing( 
+					"decompress", 
 					"gz", 
 					"sync", 
 					inputToDecompress, 
@@ -302,7 +288,8 @@ module.exports = {
 				callback
 			) {
 				callback && (PulverizedObject.asyncCallback = callback);
-				return commonDecompress( 
+				return commonDataProcessing( 
+					"decompress", 
 					"df", 
 					"async", 
 					inputToDecompress, 
@@ -310,7 +297,8 @@ module.exports = {
 				);
 			},
 			stream : function(PulverizedObject) {
-				return commonDecompress( 
+				return commonDataProcessing( 
+					"decompress", 
 					"df", 
 					"stream", 
 					null, 
@@ -321,7 +309,8 @@ module.exports = {
 				inputToDecompress, 
 				PulverizedObject
 			) {
-				return commonDecompress( 
+				return commonDataProcessing( 
+					"decompress", 
 					"df", 
 					"sync", 
 					inputToDecompress, 
