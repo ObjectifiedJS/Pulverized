@@ -1,16 +1,10 @@
 version: 2
-
-defaults: &defaults
-  working_directory: ~/pulverized
-  docker:
-    - image: circleci/node:9.11.2
-
 jobs:
-  checkout:
-    <<: *defaults
+  build:
+    working_directory: ~/pulverized
+    docker:
+      - image: circleci/node:9.11.2
     steps:
       - checkout
       - run: npm install
-      - persist_to_workspace:
-          root: ~/pulverized
-          paths: .
+      - run: npm test
