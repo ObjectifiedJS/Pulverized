@@ -4,7 +4,7 @@
   "description": "Utilize any compression algorithm with just a single module...",
   "main": "index.js",
   "scripts": {
-    "test": "node tests/setup.js"
+    "test": "node tests/basicTests.js"
   },
   "repository": {
     "type": "git",
