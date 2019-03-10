@@ -1,6 +1,10 @@
 [![License](https://img.shields.io/npm/l/pulverized.svg?style=flat-square)](https://www.npmjs.com/package/pulverized)
 [![Version](https://img.shields.io/npm/v/pulverized.svg?style=flat-square)](https://www.npmjs.com/package/pulverized)
 [![Weekly Downloads](https://img.shields.io/npm/dw/pulverized.svg?style=flat-square)](https://www.npmjs.com/package/pulverized)
+[![Issues Open](https://img.shields.io/github/issues/ObjectifiedJS/Pulverized.svg?style=flat-square)](https://www.npmjs.com/package/pulverized)
+[![CircleCi Build](https://img.shields.io/circleci/project/github/ObjectifiedJS/Pulverized/master.svg?style=flat-square)](https://www.npmjs.com/package/pulverized)
+[![Snyk Vulnerabilities](https://img.shields.io/snyk/vulnerabilities/npm/pulverized.svg?style=flat-square)](https://www.npmjs.com/package/pulverized)
+
 
 # Pulverized
 Utilize any compression algorithm with just a single module... The compression methods that are taken care of as of now are gzip, deflate and brotli.. if any new cool methods become mainstream, we will do our best to include them...
@@ -43,14 +47,14 @@ Pulverized
 |
 \-- decompress
     |-- async
-    |   |-- br ( dataToDecompress )
-    |   |-- df ( dataToDecompress )
-    |   \-- gz ( dataToDecompress )
+    |   |-- br ( dataToDecompress, callback )
+    |   |-- df ( dataToDecompress, callback )
+    |   \-- gz ( dataToDecompress, callback )
     |
     |-- stream
-    |   |-- br ( dataToDecompress )
-    |   |-- df ( dataToDecompress )
-    |   \-- gz ( dataToDecompress )
+    |   |-- br ( )
+    |   |-- df ( )
+    |   \-- gz ( )
     |
     \-- sync
         |-- br ( dataToDecompress )
