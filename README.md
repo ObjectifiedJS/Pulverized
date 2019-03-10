@@ -1,3 +1,7 @@
+[![License](https://img.shields.io/npm/l/pulverized.svg?style=flat-square)](https://www.npmjs.com/package/pulverized)
+[![Version](https://img.shields.io/npm/v/pulverized.svg?style=flat-square)](https://www.npmjs.com/package/pulverized)
+[![Weekly Downloads](https://img.shields.io/npm/dw/pulverized.svg?style=flat-square)](https://www.npmjs.com/package/pulverized)
+
 # Pulverized
 Utilize any compression algorithm with just a single module... The compression methods that are taken care of as of now are gzip, deflate and brotli.. if any new cool methods become mainstream, we will do our best to include them...
 
@@ -21,59 +25,37 @@ This is the Pulverized singleton 'illustrated' as a tree...
 
 ```
 Pulverized
-|
 |-- compress
-|   |
 |   |-- async
-|   |   |
-|   |   |-- br
-|   |   |
-|   |   |-- df
-|   |   |
-|   |   \-- gz
+|   |   |-- br ( dataToCompress, callback, brotliSettingsObject )
+|   |   |-- df ( dataToCompress, callback, deflateSettingsObject )
+|   |   \-- gz ( dataToCompress, callback, gzipSettingsObject )
 |   |
 |   |-- stream
-|   |   |
-|   |   |-- br
-|   |   |
-|   |   |-- df
-|   |   |
-|   |   \-- gz
+|   |   |-- br ( brotliSettingsObject )
+|   |   |-- df ( deflateSettingsObject )
+|   |   \-- gz ( gzipSettingsObject )
 |   |
 |   \-- sync
-|       |
-|       |-- br
-|       |
-|       |-- df
-|       |
-|       \-- gz
-|
+|       |-- br ( dataToCompress, brotliSettingsObject )
+|       |-- df ( dataToCompress, deflateSettingsObject )
+|       \-- gz ( dataToCompress, gzipSettingsObject )
 |
 \-- decompress
-    |
     |-- async
-    |   |
-    |   |-- br
-    |   |
-    |   |-- df
-    |   |
-    |   \-- gz
+    |   |-- br ( dataToDecompress )
+    |   |-- df ( dataToDecompress )
+    |   \-- gz ( dataToDecompress )
     |
     |-- stream
-    |   |
-    |   |-- br
-    |   |
-    |   |-- df
-    |   |
-    |   \-- gz
+    |   |-- br ( dataToDecompress )
+    |   |-- df ( dataToDecompress )
+    |   \-- gz ( dataToDecompress )
     |
     \-- sync
-        |
-        |-- br
-        |
-        |-- df
-        |
-        \-- gz
+        |-- br ( dataToDecompress )
+        |-- df ( dataToDecompress )
+        \-- gz ( dataToDecompress )
 ```
 ## Examples
 Within all compression methods, the `pulverizedSettingsObject` uses the encoding parameters of the relevant algorithm [deflate](https://nodejs.org/api/zlib.html#zlib_class_options), [gzip](https://nodejs.org/api/zlib.html#zlib_class_options) or [brotli](https://github.com/google/brotli/blob/v1.0.4/c/enc/params.h#L30-L42) within the object.
