@@ -3,7 +3,7 @@ jobs:
   build:
     working_directory: ~/pulverized
     docker:
-      - image: circleci/node:9.11.2
+      - image: objectifiedjs/objectified-docker-images:10-alpine
     steps:
       - checkout
       - run: npm install
