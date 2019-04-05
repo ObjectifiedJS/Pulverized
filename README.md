@@ -77,10 +77,10 @@ Pulverized["COMPRESS OR DECOMPRESS"]["ALGORITHM"].sync(
 
 ```javascript
 fs.writeFileSync(
-	"./examples/lorem-sync-q9.txt.gz",
+	"./examples/lorem-sync-l9.txt.gz",
 	Pulverized.compress.gz.sync(
 		fs.readFileSync(loremFilename,"utf8"), {
-			quality:9
+			level:9
 		}
 	)
 );
@@ -100,7 +100,7 @@ Pulverized.compress.df.async(
 	fs.readFileSync(loremFilename,"utf8"),
 	function(err, output){
 		fs.writeFileSync(
-			"./examples/lorem-async-q5.txt.df",
+			"./examples/lorem-async-l5.txt.df",
 			output
 		);
 		
@@ -108,7 +108,7 @@ Pulverized.compress.df.async(
 			"df decompressed async setup",
 			Pulverized.decompress.df.async(
 				fs.readFileSync(
-					"./examples/lorem-async-q5.txt.df"
+					"./examples/lorem-async-l5.txt.df"
 				), function(err, output){
 					console.log(
 						"df decompressed output",
@@ -119,7 +119,7 @@ Pulverized.compress.df.async(
 			)
 		);
 	},{
-		quality:5
+		level:5
 	}
 )
 ```

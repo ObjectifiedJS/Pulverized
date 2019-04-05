@@ -3,19 +3,19 @@ var Pulverized = require('../index'),
 	loremFilename = "lorem.txt";
 
 fs.writeFileSync(
-	"lorem-sync-q5.txt.df",
+	"lorem-sync-l5.txt.df",
 	Pulverized.compress.df.sync(
 		fs.readFileSync(loremFilename,"utf8"), {
-			quality:5
+			level:5
 		}
 	)
 );
 
 fs.writeFileSync(
-	"lorem-sync-q9.txt.gz",
+	"lorem-sync-l9.txt.gz",
 	Pulverized.compress.gz.sync(
 		fs.readFileSync(loremFilename,"utf8"), {
-			quality:9
+			level:9
 		}
 	)
 );
@@ -33,7 +33,7 @@ console.log(
 	"df decompressed",
 	Pulverized.decompress.df.sync(
 		fs.readFileSync(
-			"lorem-sync-q5.txt.df"
+			"lorem-sync-l5.txt.df"
 		)
 	)
 );
@@ -42,7 +42,7 @@ console.log(
 	"gz decompressed",
 	Pulverized.decompress.gz.sync(
 		fs.readFileSync(
-			"lorem-sync-q9.txt.gz"
+			"lorem-sync-l9.txt.gz"
 		)
 	)
 );
