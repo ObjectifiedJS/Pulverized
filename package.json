@@ -4,7 +4,8 @@
   "description": "Utilize any compression algorithm with just a single module...",
   "main": "index.js",
   "scripts": {
-    "test": "node tests/basicTests.js"
+    "test": "node tests/basicTests.js",
+    "preinstall": "echo 'There is nothing to install here...\n\n'"
   },
   "repository": {
     "type": "git",
@@ -28,11 +29,5 @@
   "author": "Delmarc Eric Rosario <delmarc@uneek1.com> (http://www.uneek1.com/)",
   "bugs": {
     "url": "https://github.com/ObjectifiedJS/Pulverized/issues"
-  },
-  "dependencies": {
-    "iltorb": "^2.4.1"
-  },
-  "devDependencies": {
-    "lint": "^1.1.2"
   }
 }

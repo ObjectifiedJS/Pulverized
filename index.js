@@ -1,42 +1,39 @@
 'use strict';
 
-
-// next will be using node 11's native br compression IF it exists...
 var compressionExports = {
-		"zlib" : require('zlib'),
-		"iltorb" : require('iltorb')
+		"zlib" : require('zlib')
 	},
 	methodsMapping = {
 		"compress":{
 			"async":{
-				"br":["iltorb","compress"],
+				"br":["zlib","brotliCompress"],
 				"df":["zlib","deflate"],
 				"gz":["zlib","gzip"]
 			},
 			"stream":{
-				"br":["iltorb","compressStream"],
+				"br":["zlib","createBrotliCompress"],
 				"df":["zlib","createDeflate"],
 				"gz":["zlib","createGzip"]
 			},
 			"sync":{
-				"br":["iltorb","compressSync"],
+				"br":["zlib","brotliCompressSync"],
 				"df":["zlib","deflateSync"],
 				"gz":["zlib","gzipSync"]
 			}
 		},
 		"decompress":{
 			"async":{
-				"br":["iltorb","decompress"],
+				"br":["zlib","brotliDecompress"],
 				"df":["zlib","inflate"],
 				"gz":["zlib","unzip"]
 			},
 			"stream":{
-				"br":["iltorb","decompressStream"],
+				"br":["zlib","createBrotliDecompress"],
 				"df":["zlib","createInflate"],
 				"gz":["zlib","createUnzip"]
 			},
 			"sync":{
-				"br":["iltorb","decompressSync"],
+				"br":["zlib","brotliDecompressSync"],
 				"df":["zlib","inflateSync"],
 				"gz":["zlib","unzipSync"]
 			}
@@ -72,7 +69,21 @@ function commonDataProcessing(
 		compressionAlgorithmString, 
 		methodString 
 	);
-	
+
+	// unfortunely since we cant aim for multiple versions
+	if( 
+		methodToUtilize === undefined && 
+		compressionAlgorithmString === "br"
+	){
+		throw ""+
+			"It looks like you are in an environment in which Brotli is not "+
+			"native to Node... If you download an older version of Pulverized, "+
+			"it will install another module which will give you the ability for "+
+			"it to work in your environment\n\n"+
+			"npm install Pulverized@1.2.2\n"+
+			"^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n";
+	}
+
 	switch(methodString){
 		case "async":
 			return methodToUtilize(
