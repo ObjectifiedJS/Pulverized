@@ -9,6 +9,11 @@
 # Pulverized
 Utilize any compression algorithm with just a single module... The compression methods that are taken care of as of now are gzip, deflate and brotli.. if any new cool methods become mainstream, we will do our best to include them...
 
+## Notes
+Any version **below 1.3** works using the [iltorb](https://www.npmjs.com/package/iltorb) npm module which is ideal for **any node version below 11**...
+Versions **1.3 and above** use node's native zlib brotli methods and are ideal with Node.js version 11 (and above)... There is a thrown error when you attempt to use the latest version but aren't in an
+ideal environment to do such...
+
 ## Install
 Like we need to tell you but run this...
 
@@ -138,6 +143,3 @@ fs.createReadStream(loremFilename)
 	}))
 	.pipe(fs.createWriteStream("./examples/lorem-stream-q1.txt.br"));
 ```
-
-## Notes
-I would like to add the ability to use the 'native' brotli versus the npm module [iltorb](https://www.npmjs.com/package/iltorb) which is only possible with Node.js version 11 (and I assume above)
